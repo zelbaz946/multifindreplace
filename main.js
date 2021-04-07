@@ -7,9 +7,12 @@ module.exports = (instance, properties, context) => {
 	//iterate over both arrays
 	for (let index in finds) {
 		let elemFind = finds[index];
-		let elemReplace = replaces[index];
+    let elemReplace = replaces[index];
 		text = text.replaceAll(elemFind, elemReplace);
 	}
 
 	instance.publishState("text_processed", text);
 };
+
+// iterate over the array of inputs
+// iterate over the text
