@@ -1,18 +1,24 @@
 const MFR = require('./main');
+const {testObj1, testObj2} = require('./testdata.js')
 
 describe('Configuration Testing', () => {
-  const testProp = {};
-  it('Sums up two plus two', () => {
-    expect(2 + 2).toBe(4);
-  });
+  it('changes an exact match with no attached punctuation', () => {
+    const run1 = MFR({}, testObj1, {})
+    const input = run1.textArr
+    const expected = []
+    run1.finds.map((e) => {expected.push(e.trim())})
+    expect(input).not.toEqual(expect.arrayContaining(expected))
+    console.log(run1.result)
+  })
 
-  describe('Returns an error if find_list is incorrect', () => {
-    // not a string
-    testProp.find_list = 345;
-    it('Prooduced an error if find list is not a string', () => {
-      expect(() => {
-        MFR({}, testProp.find_list, {});
-      }).toThrow();
-    });
-  });
+  it('changes an exact match with attached punctuation', () => {
+    const run2 = MFR({}, testObj2, {})
+    const input = run2.textArr
+    const expected = []
+    run2.finds.map((e) => {expected.push(e.trim())})
+    expect(input).not.toEqual(expect.arrayContaining(expected))
+    console.log(run2.result)
+  })
+
+
 });
