@@ -12,8 +12,8 @@ function MFR(instance, properties, context) {
 	
 
   // load our data
-  const finds = properties.find_list.split(',');
-	const replaces = properties.replace_list.split(',');
+	const finds = (properties.find_list) ? properties.find_list.split(',') : [];
+	const replaces = (properties.replace_list) ? properties.replace_list.split(',') : [];
 	
   if (finds.length !== replaces.length) {
     throw new Error(
@@ -24,7 +24,7 @@ function MFR(instance, properties, context) {
 
 	// iterate over both arrays
   const { text } = properties;
-  const textArr = text.split(' ');
+	const textArr = (text) ? text.split(' ') : [];
   for (let i = 0; i < textArr.length; i += 1) {
     const word = textArr[i];
     for (let j = 0; j < finds.length; j += 1) {
